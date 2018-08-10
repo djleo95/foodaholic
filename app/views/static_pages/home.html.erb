@@ -1,0 +1,10 @@
+    <% if user_signed_in? %>
+        <h3>Hello,<%= current_user.email %></h3>
+        <%= link_to "編集",edit_user_registration_path %>
+        <%= link_to "ログアウト",destroy_user_session_path, method: :DELETE %>
+    <% else %>
+    <%= link_to "サインイン",new_user_session_path %>
+    <%= link_to "サインアップ",new_user_registration_path %>
+    <% end %>
+    
+
