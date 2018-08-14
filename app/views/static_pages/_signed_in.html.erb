@@ -1,0 +1,38 @@
+<div class="row">
+    <h3>Hello,<%= current_user.email %></h3>
+    <%= link_to "編集",edit_user_registration_path %>
+    <%= link_to "ログアウト",destroy_user_session_path, method: :DELETE %>
+</div>
+
+<div>
+    <div class="container">
+        <% @albums.each do |album| %>
+        <div>
+            <p style="font-size: 3em"><%= album.title %></p>
+            <% album.images.each do |image| %>
+                <p><%= image_tag image.image_url, class: 'image-item' %></p>
+                Comment:
+                <div>
+                   <% image.comments.each do |comment| %>
+                       <div>
+                           User: <%= comment.user.email %>
+                       Content: <%= comment.content %>
+                       </div>
+                   <% end %>
+                </div>
+                <div>
+                    <%= form_for :comment, url: comments_path do |f| %>
+                        <%= f.hidden_field :commentable_id, value: image.id %>
+                        <%= f.hidden_field :commentable_type, value: 'Image' %>
+                        <%= f.text_field :content %>
+                        
+                        <%= f.submit "Send" %>
+                    <% end %>
+                </div>
+            <% end %>
+        </div>
+        <hr>
+    <% end %>
+    </div>
+
+</div>
