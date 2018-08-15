@@ -55,4 +55,27 @@
     <% end %>
     </div>
 
+
+    #Search
+    <%= search_form_for @search do |f|%>
+        <div class="filed">
+            <%= f.label :name_cont, "Name"%>
+            <%= f.text_filed :name_cont %>
+        </div>
+        
+        <div class="actions"> <%= f.submit "Search" %></div>
+    <table border="1px">
+      <tr>
+        <th>Mail</th>
+        <th>Date</th>
+        <th>Price</th>
+      </tr>
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= user.mail%></td>
+          <td><%= product.date%></td>
+          <td><%= product.price%></td>
+        </tr>
+    <% end %>
+    <table>
 </div>
