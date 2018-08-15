@@ -43,6 +43,12 @@
                         <%= f.submit "LIKE!" %>
                     <% end %>
                 <% end %>
+                <%= image.shares.count %>
+                <%= form_for :share, url: shares_path do |f| %>
+                    <%= f.hidden_field :shareable_id, value: image.id %>
+                    <%= f.hidden_field :shareable_type, value: 'Image' %>
+                    <%= f.submit "SHARE!" %>
+                <% end %>
             <% end %>
         </div>
         <hr>

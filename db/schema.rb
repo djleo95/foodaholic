@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180810084757) do
+ActiveRecord::Schema.define(version: 20180815083327) do
 
   create_table "albums", force: :cascade do |t|
     t.integer  "user_id"
@@ -59,6 +59,12 @@ ActiveRecord::Schema.define(version: 20180810084757) do
     t.string   "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "shares", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "shareable_id"
+    t.string  "shareable_type"
   end
 
   create_table "tags", force: :cascade do |t|
