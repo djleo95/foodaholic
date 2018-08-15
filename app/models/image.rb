@@ -3,4 +3,5 @@ class Image < ActiveRecord::Base
     belongs_to :album
     has_many :comments, as: :commentable
     has_many :likes, as: :likeable
+    has_many :shares, as: :shareable
 end
