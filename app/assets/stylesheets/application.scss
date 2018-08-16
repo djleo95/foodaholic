@@ -1,0 +1,27 @@
+@import "bootstrap";
+@import "static_pages";
+
+.nav-left {   
+    position: fixed;
+    height: 100vh;
+}
+
+.nav-icon {
+    width: 100%;
+}
+
+.nav-item {
+    text-align: center;
+    padding: 10px 0;
+    background: white;
+    border-bottom: .5px solid silver !important;
+}
+
+.nav-item:hover {
+    background: orange;
+}
+
+.album-container {
+    border: 1px solid gray;
+    padding: 10px;
+}
