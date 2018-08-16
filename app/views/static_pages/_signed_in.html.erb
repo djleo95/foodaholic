@@ -55,4 +55,26 @@
     <% end %>
     </div>
 
+
+    #Search
+    <%= search_form_for @search, url: root_path do |f|%>
+        <div class="field">
+            <%= f.label :email_cont, "Mail" %>
+            <%= f.text_field :email_cont %>
+        </div>
+        
+        <div class="actions"> <%= f.submit "Search" %></div>
+    <% end %>
+    <table border="1px">
+      <tr>
+        <th>Mail</th>
+      </tr>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email%></td>
+        </tr>
+    <% end %>
+    <table>
+        
+   
 </div>
