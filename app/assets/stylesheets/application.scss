@@ -25,3 +25,31 @@
     border: 1px solid gray;
     padding: 10px;
 }
+
+.peach-gradient {
+    background: linear-gradient(40deg,#ffd86f,#fc6262)!important;
+}
+
+.card-image {
+    background-size: cover;
+    background-position: center;
+    
+}
+
+.btn-rounded {
+    border-radius: 10em !important;
+}
+
+.nav a.white-text:hover {
+    background-color: #F5105D !important;
+}
+.nav a.dark-grey-text:hover {
+    color: #78909c!important;
+}
+.nav a.indigo-text:hover {
+    color: #7986cb!important;
+}
+
+.home-card-image {
+    height: 100vh;
+}
