@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :images
   resources :likes
   resources :shares
+  resources :users, only: [:show]
+  resources :friends, only: [:create, :destroy]
 end
