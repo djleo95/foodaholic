@@ -48,5 +48,5 @@ group :development do
   gem 'spring'
 end
 
-gem 'ransack'
+gem 'ransack', '1.6.5'
 gem 'jquery-rails'
