@@ -1,10 +1,24 @@
 <div class="card card-body w-50 p-3" >
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {multipart: :true, method: :put}) do |f| %>
   <%= devise_error_messages! %>
-
-
+  <div class="md-form">
+    <% if current_user.avatar.url.present? %>
+      <div>
+        <%= f.label :remove_avatar %>
+        <%= f.check_box :remove_avatar %>
+      </div>
+      <%= image_tag current_user.avatar.url %>
+      
+      <%= f.label "Change Avatar" %>
+      <%= f.file_field :avatar %>
+    <% else %>  
+      <%= f.label "Upload Avatar" %>
+      <%= f.file_field :avatar  %>
+    <% end %>
+  </div>
+  
   <div class="md-form">
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
     <label for="form1" >email</label>
