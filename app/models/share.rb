@@ -32,4 +32,10 @@ class Share < ActiveRecord::Base
         @shared_object.all_interact_count -= 4
         @shared_object.save
     end
+    
+    def get_shared_object
+        if(self.shareable_type == 'Image')
+            Image.find_by_id(self.shareable_id)
+        end
+    end
 end
