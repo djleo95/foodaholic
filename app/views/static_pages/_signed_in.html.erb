@@ -1,13 +1,31 @@
 <div>
-    <div class="container">
+    <h3>Hello,<%= current_user.email %></h3>
+    <div>
+        <%= link_to "My Page", user_path(current_user.id) %>
+        <%= link_to "編集",edit_user_registration_path %>
+        <%= link_to "ログアウト",destroy_user_session_path, method: :DELETE %>
+        <%= link_to "Upload", new_album_path %>
+    </div>
+</div>
+
+<hr>
+
+<div>
+    <div class="card w-50">
         <% @albums.each do |album| %>
-            <div class="album-container">
-                <p style="font-size: 3em"><%= album.title %></p>
-                <% album.images.each do |image| %>
-                    <%= render "image", image: image %>
-                <% end %>
-            </div>
-            <hr>
+            <% album.images.each do |image| %>
+                <!-- image -->
+                <div class="view overlay">
+                    <p class="card-img-top"><%= image_tag image.image_url, class: 'image-item' %></p>
+                    <div class="mask rgba-white-slight">
+                    </div>
+                </div>
+                <div class="card-body">
+                <!-- title -->
+                <p style="font-size: 3em",class="card-title"><%= album.title%></p>
+                <%= render "image", image: image %>
+            <% end %>
+        <hr>
         <% end %>
     </div>
 
