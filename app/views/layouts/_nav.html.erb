@@ -1,8 +1,23 @@
-<div class="col-3 col-sm-2 col-md-2 col-lg-1 col-xl-1 border-right p-0 nav-left pink z-depth-1">
-  <nav class="nav flex-column lighten-3 py-4 mb-r font-weight-bold">
-        <a class="nav-link active white-text waves-effect" href="#">Active</a>
-        <a class="nav-link white-text" href="#">Link 1</a>
-        <a class="nav-link white-text" href="#">Link 2</a>
-        <a class="nav-link white-text" href="#">Link 3</a>
+<div class="col-3 col-sm-2 col-md-2 col-lg-1 col-xl-1 border-right p-0 nav-left pink z-depth-1 nav">
+  <nav class="flex-column lighten-3 py-4 mb-r font-weight-bold w-100">
+        <%= link_to root_path, class:"logo" do %>
+          <img src="https://i.imgur.com/EJUxNMT.png" style="width: 150px; margin-left: -20px !important;">
+        <% end %>
+        
+        <% if user_signed_in? %>
+          <%= link_to current_user.email, user_path(current_user.id),
+            class:"nav-link white-text waves-effect" %>
+          <%= link_to "My Profile", my_profile_path,
+            class:"nav-link white-text waves-effect" %>
+          <%= link_to "Upload", new_album_path,
+            class:"nav-link white-text waves-effect" %>
+          <%= link_to "Log Out",destroy_user_session_path, method: :DELETE,
+            class:"nav-link white-text waves-effect"%>
+        <% else %>
+          <%= link_to "Sign In", new_user_session_path,
+            class:"nav-link white-text waves-effect" %>
+          <%= link_to "Sign Up", new_user_registration_path,
+            class:"nav-link white-text waves-effect" %>
+        <% end %>
     </nav>
 </div>

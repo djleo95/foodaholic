@@ -1,0 +1,25 @@
+<%= form_for :recipe, url: recipes_path do |f| %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+    
+    <%= f.label :content %>
+    <%= f.text_field :content %>
+    
+    <%= f.label :ingredients %>
+    <%= f.text_field :ingredients %>
+    
+    <%= render 'albums/form' %>
+    
+    <%= f.submit %>
+<% end %>
+
+<script>
+    
+</script>
+
+<style>
+    .album-submit, .album-submit input[type=submit] {
+        position: absolute;
+        top:-100px;
+    }
+</style>

@@ -1,26 +1,48 @@
-<%= form_for(@album, html: {multipart: true}) do |f| %>
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :title %>
-  </div>
-
-  <%= f.fields_for :images do |p| %>
-    <div class="field">
-      <%= p.label :image %><br>
-      <%= p.file_field :image_url, multiple: true, name: "images[image_url][]", class: "upload-image" %>
+<div class="card card-body w-75 p-3">
+  
+  <%= form_for(@album, html: {multipart: true}) do |f| %>
+    <div class="md-form">
+      <%= f.fields_for :images do |p| %>
+        <div class="file-field">
+          <div class="preview">
+             <img src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
+           class="img-fluid" alt="example placeholder" width="150px">
+          </div>
+         
+          <div class="d-flex justify-content-center">
+            <div class="file-btn btn btn-mdb-color btn-rounded float-left waves-effect waves-light">
+              <span>Choose File</span>
+              <%= p.file_field :image_url, multiple: true,
+                name: "images[image_url][]", class: "upload-image file-input" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="md-form">
+      <%= f.text_field :title, class:"form-control" %>
+      <label for="form1" >Album Title</label>
+    </div>
+    
+    <div class="md-form">
+      <%= f.text_field :content, class:"form-control" %>
+      <label for="form1" >Content</label>
+    </div>
+    
+    <div>
+      <%= f.submit class: "actions btn btn-outline-warning btn-rounded album-submit" %>
     </div>
   <% end %>
-  <div id="preview"></div>
+</div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+
 
 <script>
   $(function(){
   $(".upload-image").on("change", function(){
-    var preview = document.querySelector('#preview');
+    var preview = document.querySelector('.preview');
+    preview.innerHTML = '';
     var files   = document.querySelector('input[type=file]').files;
 
     function readAndPreview(file) {
@@ -31,7 +53,7 @@
         reader.addEventListener("load", function () {
           var image = new Image();
           image.height = 100;
-          image.width = 100;
+          image.width = 150;
           image.title = file.name;
           image.src = this.result;
           preview.appendChild( image );
@@ -46,5 +68,10 @@
       [].forEach.call(files, readAndPreview);
     }
   })
+  
 })
+
+$('.file-btn').on('click', function() {
+  $('.file-input').click();
+});
 </script>
