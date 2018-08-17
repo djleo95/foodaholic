@@ -1,0 +1,29 @@
+Name:<%= current_user.name %>
+Email: <%= current_user.email %>
+Birthday:
+<% if current_user.birthday.present? %>
+    <%= current_user.birthday %>
+<% else%>
+    Unknown
+<% end %>
+
+From:
+<% if current_user.from.present? %>
+    <%= current_user.from %>
+<% else%>
+    Unknown
+<% end %>
+
+LifeStory:
+<% if current_user.life_story.present? %>
+    <%= current_user.life_story %>
+<% else%>
+    Unknown
+<% end %>
+
+Phone:
+<% if current_user.phone.present? %>
+    <%= current_user.phone %>
+<% else%>
+    Unknown
+<% end %>

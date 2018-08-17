@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180817043811) do
+ActiveRecord::Schema.define(version: 20180817072721) do
 
   create_table "albums", force: :cascade do |t|
     t.integer  "user_id"
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 20180817043811) do
     t.string   "from"
     t.string   "life_story"
     t.string   "phone"
+    t.string   "avatar"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
