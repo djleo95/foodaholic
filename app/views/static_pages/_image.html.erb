@@ -1,39 +1,53 @@
-<p><%= image_tag image.image_url, class: 'image-item' %></p>
-Comment:
-<div>
-   <% image.comments.each do |comment| %>
-       <div>
-           User: <%= link_to comment.user.email, user_path(comment.user.id) %>
-           Content: <%= comment.content %>
-       </div>
-   <% end %>
-</div>
-<div>
-    <%= form_for :comment, url: comments_path do |f| %>
-        <%= f.hidden_field :commentable_id, value: image.id %>
-        <%= f.hidden_field :commentable_type, value: 'Image' %>
-        <%= f.text_field :content %>
+
+        <!-- comment -->
+      <p class="card-text">
+        Comment:
+        <div>
+           <% image.comments.each do |comment| %>
+               <div>
+                   User: <%= link_to comment.user.email, user_path(comment.user.id),class:"card-text" %>
+                   Content: <%= comment.content %>
+               </div>
+           <% end %>
+        </div>
+        <div>
+            <%= form_for :comment, url: comments_path do |f| %>
+                <%= f.hidden_field :commentable_id, value: image.id %>
+                <%= f.hidden_field :commentable_type, value: 'Image' %>
+                <div class="md-form">
+                   <div style="display:inline-flex">
+                    <%= f.text_field :content,class:"form-control",style:"width:150px;" %>
+                    <%= f.submit "Send" %>
+                    </div>
+                
+                </div>
+            <% end %>
+        </div>
+        </p>
         
-        <%= f.submit "Send" %>
-    <% end %>
-</div>
-<%= image.likes.count %>
-<% if Like.where(user_id: current_user.id, likeable_id: image.id, likeable_type: "Image").present? %>
-    <%= form_for :like, url: like_path(Like.where(user_id: current_user, likeable_id: image.id, likeable_type: "Image").first.id), method: :delete do |f| %>
-        <%= f.hidden_field :likeable_id, value: image.id %>
-        <%= f.hidden_field :likeable_type, value: 'Image' %>
-        <%= f.submit "UNLIKE!" %>
-    <% end %>
-<% else %>
-    <%= form_for :like, url: likes_path do |f| %>
-        <%= f.hidden_field :likeable_id, value: image.id %>
-        <%= f.hidden_field :likeable_type, value: 'Image' %>
-        <%= f.submit "LIKE!" %>
-    <% end %>
-<% end %>
-<%= image.shares.count %>
-<%= form_for :share, url: shares_path do |f| %>
-    <%= f.hidden_field :shareable_id, value: image.id %>
-    <%= f.hidden_field :shareable_type, value: 'Image' %>
-    <%= f.submit "SHARE!" %>
-<% end %>
+        <!-- like -->
+        
+        <%= image.likes.count %>
+       
+        <% if Like.where(user_id: current_user.id, likeable_id: image.id, likeable_type: "Image").present? %>
+            <%= form_for :like, url: like_path(Like.where(user_id: current_user, likeable_id: image.id, likeable_type: "Image").first.id), method: :delete do |f| %>
+                <%= f.hidden_field :likeable_id, value: image.id %>
+                <%= f.hidden_field :likeable_type, value: 'Image' %>
+                <%= f.submit "UNLIKE!" ,class:"btn btn-primary btn-sm"%>
+            <% end %>
+        <% else %>
+            <%= form_for :like, url: likes_path do |f| %>
+                <%= f.hidden_field :likeable_id, value: image.id %>
+                <%= f.hidden_field :likeable_type, value: 'Image' %>
+                <%= f.submit "LIKE!", class:"btn btn-primary btn-sm"%>
+            <% end %>
+        <% end %>
+        <!-- share -->
+        <%= image.shares.count %>
+        <%= form_for :share, url: shares_path do |f| %>
+            <%= f.hidden_field :shareable_id, value: image.id %>
+            <%= f.hidden_field :shareable_type, value: 'Image' %>
+            <%= f.submit "SHARE!",class:"btn btn-primary btn-sm"%>
+        <% end %>
+        
+    </div>
