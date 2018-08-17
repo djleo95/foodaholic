@@ -5,7 +5,7 @@ class Share < ActiveRecord::Base
     after_save :add_interact
     before_destroy :delete_interact
     
-    def add_interactgit 
+    def add_interact
         if self.shareable_type == 'Image'
             @shared_object = Image.find_by_id(self.shareable_id)
         elsif self.shareable_type == 'Album'
