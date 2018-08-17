@@ -95,3 +95,28 @@
        width: 100%;
     }
 }
+.card {
+    box-shadow: none !important;
+    background-color: transparent;
+}
+
+.view {
+    z-index: 2;
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+}
+.card-body-cascade {
+    background-color: white;
+    z-index: 3;
+    margin-top: -1rem;
+    border-radius: .25rem;
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);
+    margin-left: 4%;
+    margin-right: 4%;
+}
+.view-cascade {
+    box-shadow: 0 5 px 11 px 0 rgba(0, 0, 0, .18), 0 4 px 15 px 0 rgba(0, 0, 0, .15);
+    border-radius: .25 rem
+}
