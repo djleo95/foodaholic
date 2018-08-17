@@ -1,16 +1,4 @@
 <div>
-    <h3>Hello,<%= current_user.email %></h3>
-    <div>
-        <%= link_to "My Page", user_path(current_user.id) %>
-        <%= link_to "編集",edit_user_registration_path %>
-        <%= link_to "ログアウト",destroy_user_session_path, method: :DELETE %>
-        <%= link_to "Upload", new_album_path %>
-    </div>
-</div>
-
-<hr>
-
-<div>
     <div class="container">
         <% @albums.each do |album| %>
             <div class="album-container">

@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resources :shares
   resources :users, only: [:show]
   resources :friends, only: [:create, :destroy]
+  resources :recipes
+  get "/my_profile" => "users#my_profile"
 end
