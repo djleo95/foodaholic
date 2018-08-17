@@ -6,7 +6,6 @@ class Like < ActiveRecord::Base
     before_destroy :delete_interact
     
     def add_interact
-        byebug
         if self.likeable_type == 'Image'
             @liked_object = Image.find_by_id(self.likeable_id)
         elsif self.likeable_type == 'Album'

@@ -1,12 +1,12 @@
 <table border=1px>
     <tr>
         <th>Title</th>
-        <th>content</th>
+        
     </tr>
-    <% @albums.each do |album|%>
+    <% @albums.each do |a|%>
     <tr>
-        <td><%= album.title %></td>
-        <td>content</td>
+        <td><%= link_to a.title, album_path(a) %></td>
+        
     </tr>
     <% end %>
 </table>
