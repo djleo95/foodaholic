@@ -59,6 +59,7 @@ class AlbumsController < ApplicationController
   end
 
   def item_params
-    params.require(:album).permit(:title, images_attributes: [:id, :album_id, :image_url])
+    params[:album][:user_id] = current_user.id
+    params.require(:album).permit(:title, :user_id, images_attributes: [:id, :album_id, :image_url])
   end
 end
