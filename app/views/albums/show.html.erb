@@ -1,15 +1,11 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @album.title %>
-</p>
-
-<% @images.each do |p| %>
+<% @album.images.each do |p| %>
   <%= image_tag p.image_url, style: "max-width: 200px; max-height: 200px" %>
-  <%= link_to "Destroy", image_path(p), method: :delete %>
+  <% if current_user.id == @album.user.id %>
+    <%= link_to "Destroy Image", image_path(p), method: :delete %>
+  <% end %>
 <% end %>
 
-<%= link_to 'Edit', edit_album_path(@album) %> |
-<%= link_to 'Back', albums_path %>
+<% if current_user.id == @album.user.id %>
+  <%= link_to "Destroy Album", album_path(@album), method: :delete %>
+<% end %>
 

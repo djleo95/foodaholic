@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180816034719) do
+ActiveRecord::Schema.define(version: 20180817043811) do
 
   create_table "albums", force: :cascade do |t|
     t.integer  "user_id"
@@ -19,6 +19,11 @@ ActiveRecord::Schema.define(version: 20180816034719) do
     t.string   "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "like_count",         default: 0
+    t.integer  "comment_count",      default: 0
+    t.integer  "share_count",        default: 0
+    t.integer  "all_interact_count", default: 0
+    t.integer  "tag_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -38,10 +43,14 @@ ActiveRecord::Schema.define(version: 20180816034719) do
 
   create_table "images", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.integer  "album_id"
     t.string   "image_url"
+    t.integer  "like_count",         default: 0
+    t.integer  "comment_count",      default: 0
+    t.integer  "share_count",        default: 0
+    t.integer  "all_interact_count", default: 0
   end
 
   create_table "likes", force: :cascade do |t|
@@ -59,13 +68,10 @@ ActiveRecord::Schema.define(version: 20180816034719) do
     t.string   "content"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "relationships", force: :cascade do |t|
-    t.integer  "follower_id"
-    t.integer  "following_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "like_count",         default: 0
+    t.integer  "comment_count",      default: 0
+    t.integer  "share_count",        default: 0
+    t.integer  "all_interact_count", default: 0
   end
 
   create_table "shares", force: :cascade do |t|
