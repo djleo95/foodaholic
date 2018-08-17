@@ -1,17 +1,22 @@
 <%= @user.email %>
 <% if @user == current_user %>
-    <h4>ニュースフィード</h4>
-    <div class="container">
+
+
+
+<div class="card">
+    <h3 class="card-header warning-color-dark white-text">ニュースフィード</h3>
+    <div class="card-body">
         <% @albums.each do |album| %>
             <div class="album-container">
                 <p style="font-size: 3em"><%= album.title %></p>
                 <% album.images.each do |image| %>
-                <%= render "static_pages/image", image: image %>
-            <% end %>
+                    <%= render "static_pages/image", image: image %>
+                <% end %>
             </div>
             <hr>
         <% end %>
     </div>
+</div>
     <br>
 <% else %>
     <% if @user.friends.ids.include?(current_user.id) %>
@@ -23,4 +28,9 @@
             <%= f.submit "Add Friend" %>
         <% end %>
     <% end %>
+<% end %>
+
+<% @shares.each do |share| %>
+    <p>Shared by <%= share.user.email %></p>
+    <p><%= image_tag share.get_shared_object.image_url %></p>
 <% end %>
