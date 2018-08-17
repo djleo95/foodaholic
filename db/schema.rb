@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180817043811) do
+ActiveRecord::Schema.define(version: 20180817072721) do
 
   create_table "albums", force: :cascade do |t|
     t.integer  "user_id"
@@ -19,11 +19,11 @@ ActiveRecord::Schema.define(version: 20180817043811) do
     t.string   "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "tag_id"
     t.integer  "like_count",         default: 0
     t.integer  "comment_count",      default: 0
     t.integer  "share_count",        default: 0
     t.integer  "all_interact_count", default: 0
-    t.integer  "tag_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(version: 20180817043811) do
     t.string   "from"
     t.string   "life_story"
     t.string   "phone"
+    t.string   "avatar"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

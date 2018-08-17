@@ -11,15 +11,21 @@
 <hr>
 
 <div>
-    <div class="container">
+    <div class="card w-50">
         <% @albums.each do |album| %>
-            <div class="album-container">
-                <p style="font-size: 3em"><%= album.title %></p>
-                <% album.images.each do |image| %>
-                    <%= render "image", image: image %>
-                <% end %>
-            </div>
-            <hr>
+            <% album.images.each do |image| %>
+                <!-- image -->
+                <div class="view overlay">
+                    <p class="card-img-top"><%= image_tag image.image_url, class: 'image-item' %></p>
+                    <div class="mask rgba-white-slight">
+                    </div>
+                </div>
+                <div class="card-body">
+                <!-- title -->
+                <p style="font-size: 3em",class="card-title"><%= album.title%></p>
+                <%= render "image", image: image %>
+            <% end %>
+        <hr>
         <% end %>
     </div>
 
