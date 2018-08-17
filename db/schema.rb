@@ -19,11 +19,11 @@ ActiveRecord::Schema.define(version: 20180817072721) do
     t.string   "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "tag_id"
     t.integer  "like_count",         default: 0
     t.integer  "comment_count",      default: 0
     t.integer  "share_count",        default: 0
     t.integer  "all_interact_count", default: 0
-    t.integer  "tag_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -62,10 +62,11 @@ ActiveRecord::Schema.define(version: 20180817072721) do
   end
 
   create_table "recipes", force: :cascade do |t|
-    t.integer  "picture_id"
+    t.integer  "album_id"
     t.integer  "tag_id"
     t.string   "ingredients"
     t.string   "content"
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "like_count",         default: 0
