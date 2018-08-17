@@ -9,7 +9,7 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
     <label for="form1" >email</label>
   </div>
-
+  
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
@@ -32,9 +32,32 @@
     <%= f.password_field :current_password, autocomplete: "off",class:"form-control" %>
     <label for="form1" >current_password</label>
   </div>
-
-
-
+  
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :from %><br />
+    <%= f.text_field:from, autofocus: true, autocomplete: "from" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :life_story %><br />
+    <%= f.text_field :life_story, autofocus: true, autocomplete: "life story" %>
+  </div>
+  
+   <div class="field">
+    <%= f.label :birthday %><br />
+    <%= f.date_field :birthday, autofocus: true, autocomplete: "birthday" %>
+  </div>
+  
+   <div class="field">
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
+  </div>
+  
   <div class="actions">
     <%= f.submit "Update", class:"btn btn-outline-primary waves-effect"%>
   </div>

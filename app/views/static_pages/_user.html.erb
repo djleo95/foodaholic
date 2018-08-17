@@ -1,0 +1,17 @@
+<table border="1px">
+    <tr>
+        <th>Name</th>
+        <th>From</th>
+    </tr>
+    <% @users.each do |user| %>
+    <tr>
+        <td><%= user.name %></td>
+        <td><%= user.from %></td>
+    </tr>
+    <% end %>
+</table>
+
+
+
+
+<%= link_to 'edit', edit_user_registration_path %>
