@@ -3,8 +3,8 @@ class UsersController < ApplicationController
     
     def show
         @user = User.find_by_id(params[:id])
-        @albums =  @user.albums
-        @shares = @user.shares
+        @albums =  @user.albums.order('id DESC');
+        @shares = @user.shares.order('id DESC');
     end
     
     def my_profile

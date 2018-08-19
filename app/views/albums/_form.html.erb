@@ -1,5 +1,16 @@
-<div class="card card-body w-75 p-3">
-  
+<div class="card card-body w-75 p-3 mt-3">
+
+  <div class="btn-group" data-toggle="buttons">
+    <label class="btn btn-orange active">
+      <input type="radio" name="options" id="option1" value="album" autocomplete="on" checked>
+        Upload Album
+    </label>
+    <label class="btn btn-orange">
+      <input type="radio" name="options" id="option2" value="recipe" autocomplete="on">
+      Upload Recipe
+    </label>
+  </div>
+
   <%= form_for(@album, html: {multipart: true}) do |f| %>
     <div class="md-form">
       <%= f.fields_for :images do |p| %>
@@ -19,12 +30,17 @@
     
     <div class="md-form">
       <%= f.text_field :title, class:"form-control" %>
-      <label for="form1" >Album Title</label>
+      <label for="form1" >Title</label>
     </div>
     
     <div class="md-form">
-      <%= f.text_field :content, class:"form-control" %>
+      <%= f.text_area :content, class:"form-control" %>
       <label for="form1" >Content</label>
+    </div>
+
+    <div class="md-form recipe">
+      <%= f.text_area :ingredient, class:"form-control" %>
+      <label for="form1" >Ingredient</label>
     </div>
 
     <div class="md-form">
@@ -33,7 +49,7 @@
     </div>
     
     <div>
-      <%= f.submit class: "actions btn btn-outline-warning btn-rounded album-submit" %>
+      <%= f.submit "SUBMIT", class: "actions btn btn-outline-warning btn-rounded album-submit" %>
     </div>
   <% end %>
 </div>
@@ -71,5 +87,13 @@
       }
     })
 
+  })
+  $('.recipe').hide();
+  $('.btn-group').on('click', function() {
+    if($('input[name=options]:checked').val() == 'recipe') {
+      $('.recipe').show();
+    } else {
+      $('.recipe').hide();
+    };
   })
 </script>

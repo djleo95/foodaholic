@@ -72,6 +72,13 @@
           <% end %>
         </div>
         <hr>
+
+        <!--Ingredient-->
+        <% if @album.ingredient.present? %>
+          <p class="text-left mb-0"><strong>Ingredients:</strong></p>
+          <p><%= @album.ingredient %></p>
+          <hr>
+        <% end %>
         <!--Old comments-->
         <% if @album.comments.present? %>
           <% @album.comments.each do |comment| %>
@@ -99,7 +106,7 @@
     </div>
   </div>
   <div class="col-sm-12 mt-3">
-    <%= @album.content %>
+    <strong>Content:</strong><%= @album.content %>
   </div>
 </div>
 <% if current_user.id == @album.user.id %>
