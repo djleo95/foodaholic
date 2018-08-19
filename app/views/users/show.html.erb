@@ -1,34 +1,97 @@
-<%= @user.email %>
-<% if @user == current_user %>
-
-
-
-<div class="card">
-    <h3 class="card-header warning-color-dark white-text">ニュースフィード</h3>
-    <div class="card-body">
-        <% @albums.each do |album| %>
-            <div class="album-container">
-                <p style="font-size: 3em"><%= album.title %></p>
-                <% album.images.each do |image| %>
-                    <%= render "static_pages/image", image: image %>
-                <% end %>
-            </div>
-            <hr>
-        <% end %>
-    </div>
-</div>
-    <br>
-<% else %>
-    <% if @user.friends.ids.include?(current_user.id) %>
-        <%= link_to "Unfriend", friend_path(@user.id), method: :delete  %>
+<div class="card card-cascade wider reverse mt-1 mb-4">
+  <div class="view view-cascade overlay">
+    <% if @user.avatar.url.present? %>
+      <%= image_tag @user.avatar.url, class: "card-img-top" %>
+      <!--<div class="mask rgba-white-slight"></div>-->
     <% else %>
-        <%= form_for :friend, url: friends_path do |f| %>
-            <%= f.hidden_field :friend_id, value: @user.id %>
-            
-            <%= f.submit "Add Friend" %>
-        <% end %>
+      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg" alt="Card image cap">
     <% end %>
-<% end %>
+  </div>
+
+  <div class="avatar white">
+    <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="avatar-border" alt="woman avatar">
+  </div>
+
+  <div class="card-body card-body-cascade text-center">
+    <!-- Card -->
+
+    <h4 class="card-title text-left">
+      <strong>Name:
+        <% if @user.name.present? %>
+          <%= @user.name %>
+        <% else %>
+          Unknown
+        <%  end %>
+      </strong></h4>
+    <!-- Email -->
+    <h6 class="font-weight-bold indigo-text py-2 text-left">Email: <%= @user.email %></h6>
+    <!-- Birthday -->
+    <h6 class="font-weight-bold indigo-text py-2 text-left">Birthday:
+      <% if @user.birthday.present? %>
+        <%= @user.birthday %>
+      <% else%>
+        Unknown
+      <% end %></h6>
+    <!-- From -->
+    <h6 class="font-weight-bold indigo-text py-2 text-left">From:
+      <% if @user.from.present? %>
+        <%= @user.from %>
+      <% else%>
+        Unknown
+      <% end %></h6>
+    <!-- Life story -->
+    <h6 class="font-weight-bold indigo-text py-2 text-left">LifeStory:
+      <% if @user.life_story.present? %>
+        <%= @user.life_story %>
+      <% else%>
+        Unknown
+      <% end %></h6>
+    <!-- Phone -->
+    <h6 class="font-weight-bold indigo-text py-2 text-left">Phone:
+      <% if @user.phone.present? %>
+        <%= @user.phone %>
+      <% else%>
+        Unknown
+      <% end %></h6>
+
+    <% if current_user == @user %>
+      <%= link_to edit_user_registration_path do %>
+        <div class="btn btn-rounded btn-outline-orange">Edit Profile</div>
+      <% end %>
+    <% else %>
+      <% if @user.friends.ids.include?(current_user.id) %>
+        <%= link_to "Unfriend", friend_path(@user.id), method: :delete  %>
+      <% else %>
+        <%= form_for :friend, url: friends_path do |f| %>
+          <%= f.hidden_field :friend_id, value: @user.id %>
+
+          <%= f.submit "Add Friend" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <h4 class="mt-4">Uploaded Album</h4>
+  <div class="row mx-5">
+    <% if @albums.present? %>
+      <% @albums.each do |album| %>
+        <%= render "post", album: album %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <h4 class="mt-4">Uploaded Recipe</h4>
+  <div class="row mx-5">
+    <% if @recipes.present? %>
+      <% @recipes.each do |recipe| %>
+        <%= render "post", recipe: recipe %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <h4 class="mt-4">Shared Content</h4>
+</div>
+<!-- Card -->
 
 <% @shares.each do |share| %>
     <p>Shared by <%= share.user.email %></p>

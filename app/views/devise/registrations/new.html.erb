@@ -1,39 +1,36 @@
-<div class="card card-body w-50 p-3">
+<div class="mt-5 card card-body w-50 p-3">
   <h4 class="card-title">Sign Up</h4>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= devise_error_messages! %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
 
-  
-    
     <div class="md-form">
+      <%= f.email_field :email, autofocus: true, autocomplete: "Email", class:"form-control" %>
       <label for="inputPlaceholderEx">Email</label>
-      <%= f.email_field :email, autofocus: true, autocomplete: "Email",  class:"form-control" %>
-    
     </div>
-    
-    
+
+
     <div class="md-form">
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
       <%= f.password_field :password, autocomplete: "off", class:"form-control" %>
-      <label for="form1" >Password</label>
+      <label for="form1" >Password <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br /></label>
     </div>
-    
+
     <div class="md-form">
       <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control" %>
       <label for="form1" >Password Confirmation</label>
     </div>
-    
+
     <div class="actions">
-      <%= f.submit "Sign up" %>
+      <%= f.submit "SIGN UP", class: "btn btn-rounded btn-orange btn-sm" %>
     </div>
   <% end %>
-  
-  <%= render "devise/shared/links" %>
+  <div>
+    <%= link_to "SIGN IN", new_user_session_path, class: "btn btn-rounded btn-outline-orange btn-sm" %>
+  </div>
 </div>
- 
+
   
 
 

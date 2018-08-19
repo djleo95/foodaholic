@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180817072721) do
+ActiveRecord::Schema.define(version: 20180819182203) do
 
   create_table "albums", force: :cascade do |t|
     t.integer  "user_id"
@@ -79,6 +79,14 @@ ActiveRecord::Schema.define(version: 20180817072721) do
     t.integer "user_id"
     t.integer "shareable_id"
     t.string  "shareable_type"
+  end
+
+  create_table "tag_objects", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.string   "tagable_type"
+    t.integer  "tagable_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tags", force: :cascade do |t|

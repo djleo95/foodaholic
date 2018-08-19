@@ -10,11 +10,8 @@
           </div>
          
           <div class="d-flex justify-content-center">
-            <div class="file-btn btn btn-mdb-color btn-rounded float-left waves-effect waves-light">
-              <span>Choose File</span>
-              <%= p.file_field :image_url, multiple: true,
-                name: "images[image_url][]", class: "upload-image file-input" %>
-            </div>
+            <%= p.file_field :image_url, multiple: true,
+              name: "images[image_url][]", class: "upload-image file-input mt-2"%>
           </div>
         </div>
       <% end %>
@@ -29,6 +26,11 @@
       <%= f.text_field :content, class:"form-control" %>
       <label for="form1" >Content</label>
     </div>
+
+    <div class="md-form">
+      <%= f.select :tag_id, Tag.all, class:"form-control" %>
+      <label for="form1" >Tag</label>
+    </div>
     
     <div>
       <%= f.submit class: "actions btn btn-outline-warning btn-rounded album-submit" %>
@@ -40,38 +42,34 @@
 
 <script>
   $(function(){
-  $(".upload-image").on("change", function(){
-    var preview = document.querySelector('.preview');
-    preview.innerHTML = '';
-    var files   = document.querySelector('input[type=file]').files;
+    $(".upload-image").on("change", function(){
+      var preview = document.querySelector('.preview');
+      preview.innerHTML = '';
+      var files   = document.querySelector('input[type=file]').files;
 
-    function readAndPreview(file) {
+      function readAndPreview(file) {
 
-      if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
-        var reader = new FileReader();
+        if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
+          var reader = new FileReader();
 
-        reader.addEventListener("load", function () {
-          var image = new Image();
-          image.height = 100;
-          image.width = 150;
-          image.title = file.name;
-          image.src = this.result;
-          preview.appendChild( image );
-        }, false);
+          reader.addEventListener("load", function () {
+            var image = new Image();
+            image.height = 100;
+            image.width = 150;
+            image.title = file.name;
+            image.src = this.result;
+            preview.appendChild( image );
+          }, false);
 
-        reader.readAsDataURL(file);
+          reader.readAsDataURL(file);
+        }
+
       }
 
-    }
+      if (files) {
+        [].forEach.call(files, readAndPreview);
+      }
+    })
 
-    if (files) {
-      [].forEach.call(files, readAndPreview);
-    }
   })
-  
-})
-
-$('.file-btn').on('click', function() {
-  $('.file-input').click();
-});
 </script>

@@ -1,0 +1,32 @@
+<div class="col-sm-4">
+  <div class="card card-cascade narrower mb-4" style="margin-top: 40px;">
+
+    <!-- Card image -->
+    <div class="view view-cascade overlay" style="z-index: 4">
+      <% if album.images.present? %>
+        <%= image_tag album.images.first.image_url, class: "card-img-top" %>
+      <% else %>
+        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(147).jpg" alt="Card image cap">
+      <% end %>
+
+      <a>
+        <div class="mask rgba-white-slight waves-effect waves-light"></div>
+      </a>
+    </div>
+
+    <!-- Card content -->
+    <div class="card-body card-body-cascade" style="margin: -150px -15px 0px; padding-top: 150px">
+
+      <!-- Label -->
+      <h5 class="pink-text pb-2 pt-3">Culinary</h5>
+      <!-- Title -->
+      <h4 class="card-title"><%= album.title %></h4>
+      <!-- Text -->
+      <p class="card-text"><%= album.content %></p>
+      <!-- Button -->
+      <%= link_to "Detail", album_path(album),
+        class: "btn btn-unique waves-effect waves-light" %>
+    </div>
+
+  </div>
+</div>

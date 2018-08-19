@@ -8,5 +8,7 @@ class UsersController < ApplicationController
     end
     
     def my_profile
+        @albums =  current_user.albums
+        @shares = current_user.shares
     end
 end

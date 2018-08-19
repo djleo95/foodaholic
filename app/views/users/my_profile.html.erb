@@ -1,52 +1,83 @@
-<!-- Card -->
-<div class="card card-cascade wider reverse my-4">
-
-  <!-- Card image -->
+<div class="card card-cascade wider reverse mt-1 mb-4">
   <div class="view view-cascade overlay">
         <% if current_user.avatar.url.present? %>
             <%= image_tag current_user.avatar.url, class: "card-img-top" %>
             <!--<div class="mask rgba-white-slight"></div>-->
+        <% else %>
+      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg" alt="Card image cap">
         <% end %>
   </div>
 
-  <!-- Card content -->
-  
-  <div class="card-body card-body-cascade text-center">
+  <div class="avatar white">
+    <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="avatar-border" alt="woman avatar">
+  </div>
 
-    <!-- name -->
-    <h4 class="card-title"><strong>Name:<%= current_user.name %></strong></h4>
+  <div class="card-body card-body-cascade text-center">
+    <!-- Card -->
+
+    <h4 class="card-title text-left">
+      <strong>Name:
+        <% if current_user.name.present? %>
+          <%= current_user.name %>
+        <% else %>
+          Unknown
+        <%  end %>
+      </strong></h4>
     <!-- Email -->
-    <h6 class="font-weight-bold indigo-text py-2">Email: <%= current_user.email %></h6>
+    <h6 class="font-weight-bold indigo-text py-2 text-left">Email: <%= current_user.email %></h6>
     <!-- Birthday -->
-    <h6 class="font-weight-bold indigo-text py-2">Birthday:
+    <h6 class="font-weight-bold indigo-text py-2 text-left">Birthday:
     <% if current_user.birthday.present? %>
         <%= current_user.birthday %>
     <% else%>
         Unknown
     <% end %></h6>
     <!-- From -->
-        <h6 class="font-weight-bold indigo-text py-2">From:
+        <h6 class="font-weight-bold indigo-text py-2 text-left">From:
     <% if current_user.from.present? %>
         <%= current_user.from %>
     <% else%>
         Unknown
     <% end %></h6>
     <!-- Life story -->
-        <h6 class="font-weight-bold indigo-text py-2">LifeStory:
+        <h6 class="font-weight-bold indigo-text py-2 text-left">LifeStory:
     <% if current_user.life_story.present? %>
         <%= current_user.life_story %>
     <% else%>
         Unknown
     <% end %></h6>
     <!-- Phone -->
-        <h6 class="font-weight-bold indigo-text py-2">Phone:
+        <h6 class="font-weight-bold indigo-text py-2 text-left">Phone:
     <% if current_user.phone.present? %>
         <%= current_user.phone %>
     <% else%>
         Unknown
     <% end %></h6>
+
+    <%= link_to edit_user_registration_path do %>
+      <div class="btn btn-rounded btn-outline-orange">Edit Profile</div>
+    <% end %>
   </div>
 
+  <h4 class="mt-4">Uploaded Album</h4>
+  <div class="row mx-5">
+    <% if @albums.present? %>
+      <% @albums.each do |album| %>
+        <%= render "post", album: album %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <h4 class="mt-4">Uploaded Recipe</h4>
+  <div class="row mx-5">
+    <% if @recipes.present? %>
+      <% @recipes.each do |recipe| %>
+        <%= render "post", recipe: recipe %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <h4 class="mt-4">Shared Content</h4>
 </div>
 <!-- Card -->
 
