@@ -1,10 +1,14 @@
 class CommentsController < ApplicationController
     def create
         @comment = Comment.new(comment_params)
-        
+        if params[:comment][:redirect].present?
+            redirect = params[:comment][:redirect]
+        else
+            redirect = root_path
+        end
         respond_to do |format|
             if @comment.save
-                format.html { redirect_to root_path , notice: 'Comment was successfully created.' }
+                format.html { redirect_to redirect , notice: 'Comment was successfully created.' }
             else
                 format.html { render :new }
             end

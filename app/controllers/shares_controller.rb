@@ -1,10 +1,14 @@
 class SharesController < ApplicationController
     def create
         @share = Share.new(share_params)
-        
+        if params[:share][:redirect].present?
+            redirect = params[:share][:redirect]
+        else
+            redirect = root_path
+        end
         respond_to do |format|
             if @share.save
-                format.html { redirect_to root_path , notice: 'Share was successfully created.' }
+                format.html { redirect_to redirect , notice: 'Share was successfully created.' }
             else
                 format.html { render :new }
             end

@@ -72,12 +72,7 @@
     float: left !important;
 }
 
-#file-input {
-    position: absolute;
-    top:-100px;
-}
-
-#preview {
+.preview {
     img {
         box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
     }
@@ -97,10 +92,6 @@
        width: 100%;
     }
 }
-.card {
-    box-shadow: none !important;
-    background-color: transparent;
-}
 
 .view {
     z-index: 2;
@@ -112,13 +103,68 @@
 .card-body-cascade {
     background-color: white;
     z-index: 3;
-    margin-top: -1rem;
+    margin-top: -200px;
     border-radius: .25rem;
     box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);
     margin-left: 4%;
     margin-right: 4%;
 }
 .view-cascade {
-    box-shadow: 0 5 px 11 px 0 rgba(0, 0, 0, .18), 0 4 px 15 px 0 rgba(0, 0, 0, .15);
-    border-radius: .25 rem
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, .18), 0 4px 15px 0 rgba(0, 0, 0, .15);
+  border-radius: .25rem;
+}
+
+.card-cascade {
+  box-shadow: none !important;
+}
+
+.btn-floating {
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+  width: 47px;
+  height: 47px;
+  position: relative;
+  z-index: 1;
+  vertical-align: middle;
+  display: inline-block;
+  overflow: hidden;
+  -webkit-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  margin: 10px;
+  border-radius: 50%;
+  padding: 0;
+  cursor: pointer;
+
+  i {
+    display: inline-block;
+    width: inherit;
+    text-align: center;
+    color: #fff;
+    font-size: 1.25rem;
+    line-height: 47px;
+  }
+}
+
+.avatar {
+  z-index: 4;
+  width: 120px;
+  margin-top: -80px;
+  margin-left: 460px !important;
+}
+
+.avatar-border {
+  border: 5px solid #fff;
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+}
+
+.white {
+  background-color: #fff!important;
+}
+
+.w-90 {
+  width: 90% !important;
+}
+
+.bs {
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
 }

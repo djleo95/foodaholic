@@ -4,6 +4,8 @@ class CreateShares < ActiveRecord::Migration
       t.integer :user_id
       t.integer :shareable_id      
       t.string :shareable_type
+
+      t.timestamps
     end
   end
 end

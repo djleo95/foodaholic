@@ -1,10 +1,13 @@
-<br><br><br><br>
-<div class="card card-body w-50 p-3">
-<h2>Sign In</h2>
 <br>
-
+<div class="card card-body w-50 p-3">
+  <h2>Sign In</h2>
+  <br>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <% if flash[:alert].present?%>
+      <p style="color: red"><%= flash[:alert] %></p>
+    <% end %>
+
     <div class="md-form">
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
       <label for="form1" >Email</label>
@@ -13,21 +16,21 @@
       <%= f.password_field :password, autocomplete: "off", class:"form-control" %>
       <label for="form1" >Password</label>
     </div>
-  <br>
-  <% if devise_mapping.rememberable? -%>
-    <div class="custom-control custom-checkbox">
-      <%= f.check_box :remember_me, class:"custom-control-input", id:"defaultIndeterminate2" %>
-      <label class="custom-control-label" for="defaultIndeterminate2">To record the login information</label>
-    </div>
+    <% if devise_mapping.rememberable? -%>
+      <div class="custom-control custom-checkbox">
+        <%= f.check_box :remember_me, class:"custom-control-input", id:"defaultIndeterminate2" %>
+        <label class="custom-control-label" for="defaultIndeterminate2">Remember me</label>
+      </div>
+    <% end %>
+    <%= f.submit "SIGN IN", class:"btn btn-rounded btn-orange waves-effect" %>
+    <br>
   <% end %>
 
+  <div>
+    <%= link_to "SIGN UP", new_user_registration_path, class: "btn btn-rounded btn-outline-orange btn-sm" %>
+  </div>
+</div>
 
-  <%= f.submit "Sign In", class:"btn btn-outline-primary waves-effect" %>
-  <br>
-<% end %>
-
-
-<%= render "devise/shared/links" %>
 <script>
   $('#defaultIndeterminate2').prop('indeterminate', true);
 </script>
