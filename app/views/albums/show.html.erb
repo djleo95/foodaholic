@@ -47,7 +47,7 @@
       <div class="card-body">
         <!--Interaction-->
         <div class="row">
-          <% if current_user.liked?(@album.id, 'Album') %>
+          <% if current_user.liked?(@album.id, "Album", current_user) %>
             <%= link_to like_path(redirect: album_path(@album),
               id: Like.where(user_id: current_user, likeable_id: @album.id,
               likeable_type: "Album").first.id), method: :delete do %>

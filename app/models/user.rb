@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :shares
   has_many :likes
 
-  def liked? (id, type)
-    Like.where(likeable_id: id, likeable_type: type, user_id: id).present?
+  def liked? (id, type, user)
+    Like.where(likeable_id: id, likeable_type: type, user_id: user.id).present?
   end
 end
