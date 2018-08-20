@@ -1,15 +1,16 @@
 <div class="card card-cascade wider reverse mt-1 mb-4" style="margin-left: -50px">
   <div class="view view-cascade overlay">
     <% if @user.avatar.url.present? %>
-      <%= image_tag @user.avatar.url, class: "card-img-top" %>
       <!--<div class="mask rgba-white-slight"></div>-->
+      <img class="card-img-top" style="height: 350px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw2YBDBLIgKZpDjhG-a9uUbtn27PsgRRaXU99fPXEvKQDIUI_U" alt="Card image cap">
     <% else %>
-      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg" alt="Card image cap">
+      <img class="card-img-top" style="height: 350px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTw2YBDBLIgKZpDjhG-a9uUbtn27PsgRRaXU99fPXEvKQDIUI_U" alt="Card image cap"
     <% end %>
   </div>
 
   <div class="avatar white">
-    <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="avatar-border" alt="woman avatar">
+    <%= image_tag @user.avatar.url, class: "avatar-border", style:"width: 250px"%>
+    <!--<img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%2810%29.jpg" class="avatar-border" alt="woman avatar">-->
   </div>
 
   <div class="card-body card-body-cascade text-center">
