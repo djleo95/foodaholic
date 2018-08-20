@@ -24,12 +24,12 @@
           <% end %>
         <% else %>
           <%= form_for :like, url: likes_path, method: :post,
-                       html: {class: 'btn-like-form'} do |f| %>
+            html: {class: "btn-like-form-#{album.id}"} do |f| %>
             <%= f.hidden_field :likeable_id, value: album.id %>
             <%= f.hidden_field :likeable_type, value: 'Album' %>
             <%= f.hidden_field :redirect, value: album_path(album) %>
           <% end %>
-          <div class="btn btn-pink btn-sm btn-like"><%= album.like_count %> LIKE</div>
+          <div class="btn btn-pink btn-sm btn-like" id="<%= album.id %>"><%= album.like_count %> LIKE</div>
         <% end %>
         <div class="btn btn-outline-info btn-sm"><%= album.comment_count %> COMMENT</div>
         <div class="btn btn-outline-orange btn-sm btn-share"><%= album.share_count %> SHARE</div>
@@ -72,7 +72,10 @@
   });
 
   $('.btn-like').on('click', function() {
-    $('.btn-like-form').submit();
+    console.log('clicked'+$(this).attr('id'))
+    var btn_class = '.btn-like-form' + $(this).attr('id')
+    console.log(btn_class);
+    $(btn_class).submit();
   });
 
 
