@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resources :recipes
   get "/my_profile" => "users#my_profile"
   get "/upload" => "albums#new"
+  resources :tags, only: [:show]
 end

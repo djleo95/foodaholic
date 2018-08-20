@@ -1,42 +1,17 @@
-<div>
-    <h3>Hello,<%= current_user.email %></h3>
-    <div>
-        <%= link_to "My Page", user_path(current_user.id) %>
-        <%= link_to "編集",edit_user_registration_path %>
-        <%= link_to "ログアウト",destroy_user_session_path, method: :DELETE %>
-        <%= link_to "Upload", new_album_path %>
-    </div>
-</div>
+<div class="row mx-5">
+  <div class="col-sm-8" style="margin-left: -60px">
+    <% if @albums.present? %>
+      <% @albums.each do |album| %>
+        <%= render "post", album: album, share: nil %>
+      <% end %>
+    <% end %>
+  </div>
 
-<hr>
-
-<div>
-    <div class="card w-50">
-        <% @albums.each do |album| %>
-            <% album.images.each do |image| %>
-                <!-- image -->
-                <div class="view overlay">
-                    <p class="card-img-top"><%= image_tag image.image_url, class: 'image-item' %></p>
-                    <div class="mask rgba-white-slight">
-                    </div>
-                </div>
-                <div class="card-body">
-                <!-- title -->
-                <p style="font-size: 3em",class="card-title"><%= album.title%></p>
-                <%= render "image", image: image %>
-            <% end %>
-        <hr>
-        <% end %>
-    </div>
-
-
-
-    <h1>Search</h1>
-    <%= form_tag root_path, method: :get do %>
-      <%= text_field_tag :q, nil %>
-    <% end %> 
-    
-    <%= render 'user' %>
-    <%= render 'album' %>
-    <%= render 'ranking'%>
+  <div class="col-sm-4" style="margin: 10px 0 0 50px;">
+    <% if @shares.present? %>
+      <% @shares.each do |share| %>
+        <%= render "post", album: Album.find_by_id(share.shareable_id), share: share %>
+      <% end %>
+    <% end %>
+  </div>
 </div>

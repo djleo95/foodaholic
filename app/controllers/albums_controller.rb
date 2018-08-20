@@ -65,7 +65,7 @@ class AlbumsController < ApplicationController
   end
 
   def item_params
-    params.require(:album).permit(:title, :content, :user_id, :ingredient, :post_type,
+    params.require(:album).permit(:title, :content, :tag_id, :user_id, :ingredient, :post_type,
       images_attributes: [:id, :album_id, :image_url])
   end
 end

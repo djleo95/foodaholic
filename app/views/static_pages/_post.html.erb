@@ -1,0 +1,68 @@
+<div class="card card-cascade narrower mb-4" style="margin-top: 40px;">
+
+    <!-- Card image -->
+    <div class="view view-cascade overlay" style="z-index: 4">
+      <% if album.images.present? %>
+        <%= image_tag album.images.first.image_url, class: "card-img-top" %>
+      <% else %>
+        <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(147).jpg" alt="Card image cap">
+      <% end %>
+
+      <a>
+        <div class="mask rgba-white-slight waves-effect waves-light"></div>
+      </a>
+    </div>
+
+    <!-- Card content -->
+    <div class="card-body card-body-cascade" style="margin: -150px -15px 0px; padding-top: 150px">
+      <div class="row">
+        <% if album.user.liked?(album.id, 'Album') %>
+          <%= link_to like_path(redirect: album_path(album),
+            id: Like.where(user_id: album.user, likeable_id: album.id,
+            likeable_type: "Album").first.id), method: :delete do %>
+            <div class="btn btn-outline-pink btn-sm btn-unlike"><%= album.like_count %> LIKE</div>
+          <% end %>
+        <% else %>
+          <%= form_for :like, url: likes_path, method: :post,
+                       html: {class: 'btn-like-form'} do |f| %>
+            <%= f.hidden_field :likeable_id, value: album.id %>
+            <%= f.hidden_field :likeable_type, value: 'Album' %>
+            <%= f.hidden_field :redirect, value: album_path(album) %>
+          <% end %>
+          <div class="btn btn-pink btn-sm btn-like"><%= album.like_count %> LIKE</div>
+        <% end %>
+        <div class="btn btn-outline-info btn-sm"><%= album.comment_count %> COMMENT</div>
+        <div class="btn btn-outline-orange btn-sm btn-share"><%= album.share_count %> SHARE</div>
+        <%= form_for :share, url: shares_path, method: :post,
+                     html: {class: 'btn-share-form'} do |f| %>
+          <%= f.hidden_field :shareable_id, value: album.id %>
+          <%= f.hidden_field :shareable_type, value: 'Album' %>
+          <%= f.hidden_field :redirect, value: album_path(album) %>
+        <% end %>
+      </div>
+      <!-- Label -->
+      <% if share.present? %>
+        <h6 class="text-left" style="font-size: 1em;">
+          <%= link_to share.user.email, user_path(share.user) %> shared at <%= time_ago_in_words(share.created_at) %>
+        </h6>
+      <% end %>
+
+      <h6 class="text-left"><%= link_to album.user.email, user_path(album.user) %> <span style="color: gray">
+        created at <%= time_ago_in_words(album.created_at) %></span></h6>
+      <h5 class="text-white pb-2 pt-3 text-left">
+        <% if album.tag_object.present? %>
+          <%= link_to album.tag_object.title, tag_path(album.tag_object), style: "background: orange; padding: 2px 8px; border-radius: 5px" %>
+        <% else %>
+          <span style="background: orange; padding: 2px 8px; border-radius: 5px"><%= link_to "Food", tag_path(id: -1)%></span>
+        <% end %>
+      </h5>
+      <!-- Title -->
+      <h4 class="card-title"><%= album.title %></h4>
+      <!-- Text -->
+      <p class="card-text"><%= album.content %></p>
+      <!-- Button -->
+      <%= link_to "Detail", album_path(album),
+        class: "btn btn-unique waves-effect waves-light" %>
+    </div>
+
+</div>

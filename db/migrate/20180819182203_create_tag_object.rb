@@ -2,8 +2,7 @@ class CreateTagObject < ActiveRecord::Migration
   def change
     create_table :tag_objects do |t|
       t.integer :tag_id
-      t.string :tagable_type
-      t.integer :tagable_id
+      t.integer :album_id
 
       t.timestamps
     end

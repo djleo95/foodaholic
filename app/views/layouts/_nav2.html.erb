@@ -7,19 +7,41 @@
 
 		<div class="mCustomScrollbar" data-mcs-theme="dark">
 			<ul class="left-menu">
-				        <% if user_signed_in? %>
+        <% if user_signed_in? %>
+        <li>
+          <div class="md-form input-group mt-0 mb-3">
+            <div class="row">
+              <div class="col-sm-7 offset-1">
+                <%= form_for :search do |f| %>
+                  <%= f.text_field :search, class: "form-control form-control-lg mr-3" %>
+                <% end %>
+              </div>
+
+              <div class="col-sm-1">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="basic-addon11">GO</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
         <li >
           <%= link_to current_user.email, user_path(current_user.id),
             class:"nav-link  " %>
         </li>
         
         <li >
-          <%= link_to "My Profile", my_profile_path,
+          <%= link_to "News Feed", my_profile_path,
             class:"nav-link " %>
         </li>
           
         <li >
           <%= link_to "Upload", upload_path,
+            class:"nav-link "%>
+        </li>
+
+        <li >
+          <%= link_to "Ranking", '#',
             class:"nav-link "%>
         </li>
 
@@ -39,14 +61,7 @@
         <!--</li>-->
             
         <% else %>
-          <li>
-          	<%= link_to "Sign In", new_user_session_path,
-            class:"nav-link " %>
-          </li>
-          <li>
-          	<%= link_to "Sign Up", new_user_registration_path,
-            class:"nav-link " %>
-          </li>
+
         <% end %>
 			</ul>
 		</div>

@@ -44,7 +44,7 @@
     </div>
 
     <div class="md-form">
-      <%= f.select :tag_id, Tag.all, class:"form-control" %>
+      <%= f.select :tag_id, Tag.all.collect {|p| [ p.title, p.id ] }, class:"form-control" %>
       <label for="form1" >Tag</label>
     </div>
     
