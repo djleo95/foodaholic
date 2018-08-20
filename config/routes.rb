@@ -12,4 +12,7 @@ Rails.application.routes.draw do
   get "/my_profile" => "users#my_profile"
   get "/upload" => "albums#new"
   resources :tags, only: [:show]
+  post "/search" => "searchs#show"
+  get "/search" => "searchs#show"
+  get "/ranking" => "searchs#index"
 end

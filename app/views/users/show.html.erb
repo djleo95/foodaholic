@@ -75,15 +75,21 @@
   <div class="row mx-5">
     <% if @albums.present? %>
       <% @albums.each do |album| %>
-        <%= render "post", album: album %>
+        <%= render "post", album: album, share: nil%>
       <% end %>
     <% end %>
   </div>
 
-  <h4 class="mt-4">Shared Content</h4>
+  <h4 class="mt-4">Shared Content
+    <% if @shares.present? %>
+      <div class="row mx-5">
+        <% @shares.each do |share| %>
+
+            <%= render "post", album: Album.find_by_id(share.shareable_id), share: share %>
+        <% end %>
+      </div>
+    <% end %>
+  </h4>
 </div>
 <!-- Card -->
 
-<% @shares.each do |share| %>
-    <p>Shared by <%= share.user.email %></p>
-<% end %>

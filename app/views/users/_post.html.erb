@@ -16,9 +16,15 @@
 
     <!-- Card content -->
     <div class="card-body card-body-cascade" style="margin: -150px -15px 0px; padding-top: 150px">
-
+      <% if share.present? %>
+        <h6 class="text-left pt-3" style="font-size: 1em;">
+          <%= link_to share.user.email, user_path(share.user) %> shared at <%= time_ago_in_words(share.created_at) %>
+        </h6>
+      <% end %>
       <!-- Label -->
-      <h5 class="pink-text pb-2 pt-3">Culinary</h5>
+      <h6 class="text-left pb-2 pt-3"><%= link_to album.user.email, user_path(album.user) %> <span style="color: gray">
+        created at <%= time_ago_in_words(album.created_at) %></span></h6>
+      <h5 class="pink-text">Culinary</h5>
       <!-- Title -->
       <h4 class="card-title"><%= album.title %></h4>
       <!-- Text -->

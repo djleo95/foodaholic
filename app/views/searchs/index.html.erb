@@ -1,0 +1,9 @@
+<div class="row">
+  <% @albums.each_with_index do |top, index| %>
+    <div class="col-sm-6">
+      <h4>Top <%= index +1 %>: </h4>
+      <%= render 'static_pages/post', album: top, share: nil %>
+    </div>
+
+  <% end %>
+</div>
