@@ -18,6 +18,13 @@ class AlbumsController < ApplicationController
   end
 
   def create
+    params[:album][:user_id] = current_user.id
+    if params[:album][:ingredient].present?
+      params[:album][:post_type] = 1
+    else
+      params[:album][:post_type] = 0
+    end
+
     @album = Album.new(item_params)
 
     respond_to do |format|
@@ -58,8 +65,7 @@ class AlbumsController < ApplicationController
   end
 
   def item_params
-    params[:album][:user_id] = current_user.id
-    params.require(:album).permit(:title, :content, :user_id,
+    params.require(:album).permit(:title, :content, :user_id, :ingredient, :post_type,
       images_attributes: [:id, :album_id, :image_url])
   end
 end

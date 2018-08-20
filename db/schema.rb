@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180819182203) do
+ActiveRecord::Schema.define(version: 20180819203718) do
 
   create_table "albums", force: :cascade do |t|
     t.integer  "user_id"
@@ -24,6 +24,8 @@ ActiveRecord::Schema.define(version: 20180819182203) do
     t.integer  "comment_count",      default: 0
     t.integer  "share_count",        default: 0
     t.integer  "all_interact_count", default: 0
+    t.string   "ingredient"
+    t.integer  "post_type"
   end
 
   create_table "comments", force: :cascade do |t|

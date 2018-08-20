@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :friends, only: [:create, :destroy]
   resources :recipes
   get "/my_profile" => "users#my_profile"
+  get "/upload" => "albums#new"
 end
