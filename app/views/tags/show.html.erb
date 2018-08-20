@@ -1,0 +1,8 @@
+<div class="row" style="margin-left: -20px">
+  <% @albums.each do |album| %>
+    <div class="col-sm-4">
+      <%= render "static_pages/post", album: album, share: nil %>
+    </div>
+  <% end %>
+</div>
+

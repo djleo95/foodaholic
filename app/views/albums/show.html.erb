@@ -91,7 +91,7 @@
                      html: {class: "comment-form"} do |f| %>
           <div class="input-group">
             <%= f.text_field :content, placeholder: "Comment",
-                             class: "form-control form-control-lg mr-3" %>
+              class: "form-control form-control-lg mr-3" %>
             <%= f.hidden_field :commentable_type, value: "Album" %>
             <%= f.hidden_field :commentable_id, value: @album.id %>
             <%= f.hidden_field :redirect, value: album_path(@album) %>

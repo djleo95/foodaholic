@@ -78,21 +78,24 @@ ActiveRecord::Schema.define(version: 20180819203718) do
   end
 
   create_table "shares", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "shareable_id"
-    t.string  "shareable_type"
+    t.integer  "user_id"
+    t.integer  "shareable_id"
+    t.string   "shareable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tag_objects", force: :cascade do |t|
     t.integer  "tag_id"
-    t.string   "tagable_type"
-    t.integer  "tagable_id"
+    t.integer  "album_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string "title"
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: :cascade do |t|
